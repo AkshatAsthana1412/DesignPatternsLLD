@@ -50,6 +50,13 @@ var once sync.Once // construct used to initialise something only once,
 
 var instance *singletonDatabase
 
+// GetPopulation and GetSingletonDatabase violate the dependancy inversion principle
+// because they define rigid methods to access the data. We need to have abstractions/interfaces,
+// this helps in unit tests where you may use a dummy database
+func (db *singletonDatabase) GetPopulation(city string) (int, error) {
+	return db.populations[city], nil
+}
+
 func GetSingletonDatabase() *singletonDatabase {
 	once.Do(func() {
 		pops, e := readFile("./population.txt")
@@ -67,5 +74,6 @@ func GetSingletonDatabase() *singletonDatabase {
 
 func main() {
 	db := GetSingletonDatabase()
-	fmt.Printf("Population of Tokyo: %d\n", db.populations["Tokyo"])
+	pop, _ := db.GetPopulation("Tokyo")
+	fmt.Printf("Population of Tokyo: %d\n", pop)
 }

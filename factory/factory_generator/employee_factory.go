@@ -9,6 +9,7 @@ type Employee struct {
 
 // Struct way of creating a factory
 type EmployeeFactory struct {
+	// to generate factory which can generate employees of a specific type
 	position string
 	salary   int
 }

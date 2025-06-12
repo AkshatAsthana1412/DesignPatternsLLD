@@ -43,3 +43,8 @@ func (p *Person) getAge() int {
 func (p *Person) setEligibility(e Eligibility) {
 	p.eligibilityCriteria = e
 }
+
+func (p *Person) setAge(newAge int) {
+	fmt.Printf("%s new age set to: %d\n", p.getName(), newAge)
+	p.age = newAge
+}

@@ -57,3 +57,6 @@ func main() {
 	tc := TransparentShape{&cs, 10}
 	fmt.Println(tc.Render())
 }
+
+// Therefore by using decorator pattern and decorating Shape interface, we've extended
+// functionality of existing Shapes without modifying the existing code

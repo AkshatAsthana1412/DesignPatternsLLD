@@ -27,11 +27,12 @@ func (t *Traffic_Management) Unsubscribe(o ...Observer) {
 }
 
 func (t *Traffic_Management) NotifyAllObservers() {
+	var toUnsubscribe []Observer
 	for observer := t.persons.Front(); observer != nil; observer = observer.Next() {
 		if p, ok := observer.Value.(*Person); ok {
 			if p.eligibilityCriteria.IsEligible(p) {
-				p.notify(fmt.Sprintf("Congrats %s! you're allowed to drive now.\n", p.getName()))
-				t.Unsubscribe(p)
+				p.notify(fmt.Sprintf("Congrats %s! you're allowed to drive now.", p.getName()))
+				toUnsubscribe = append(toUnsubscribe, p)
 			} else {
 				p.notify(fmt.Sprintf("%s you're not yet eligible to drive", p.getName()))
 			}
@@ -39,4 +40,5 @@ func (t *Traffic_Management) NotifyAllObservers() {
 			fmt.Println("Invalid observer type")
 		}
 	}
+	t.Unsubscribe(toUnsubscribe...)
 }

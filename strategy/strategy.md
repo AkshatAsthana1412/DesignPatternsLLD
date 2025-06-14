@@ -1,5 +1,5 @@
 ## Strategy Design Patttern
- Strategy design pattern allows to turn a set of behaviors into objects which can be used
+ Strategy design pattern is a behavioral pattern that allows to turn a set of behaviors into objects which can be used
 interchangeably by the context object.
 
 ### Components of strategy pattern:

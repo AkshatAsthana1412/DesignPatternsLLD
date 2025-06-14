@@ -4,6 +4,7 @@ type Pizza interface {
 	GetPrice() float32
 }
 
+// Concrete object
 type BasicPizza struct {
 	price float32
 }
